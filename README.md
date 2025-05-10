@@ -402,7 +402,7 @@ public class ExampleInvasionMusic : ModSceneEffect
 ```
 
 # Bestiary Filter
-For our invasion to have a filter in the bestiary, we can make a class that inherits from `ModBiome`. This won't be an actual biome, this is just so the bestiary can filter our invasion's enemies. Don't forget to include a sprite for the bestiary filter icon. the image file must be 30x30 and be named ending with "_Icon". For example, "ExampleInvasionBiome_Icon.png"
+For our invasion to have a filter in the bestiary, we can make a class that inherits from `ModBiome`. This won't be an actual biome, this is just so the bestiary can filter our invasion's enemies. Don't forget to include a sprite for the bestiary filter icon. the image file must be 30x30 and be named ending with "_Icon". For example, "ExampleInvasionBiome_Icon.png".
 
 ```csharp
 public class ExampleInvasionBiome : ModBiome
