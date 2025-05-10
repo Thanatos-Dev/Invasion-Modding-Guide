@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -15,7 +16,7 @@ namespace InvasionModdingGuide.Content
     {
         public static bool isActive = false;
         public static int killCount = 0; // How many enemies have been killed so far
-        public static int killsNeeded = 100 - 25; // How many total kills are needed to end the invasion. We subtract 25 here so we can add 25 per player for multiplayer scaling
+        public static int killsNeeded = 120 - 40; // How many total kills are needed to end the invasion. We subtract 40 here so we can add 40 per player for multiplayer scaling
 
         // The 2 methods below are needed to make sure the invasion will continue & remember the current kill count when exiting the world
         public override void SaveWorldData(TagCompound tag)
@@ -78,6 +79,21 @@ namespace InvasionModdingGuide.Content
         {
             TextureAssets.Sun = Main.Assets.Request<Texture2D>("Images/Sun");
         }
+
+        // The 2 methods below sync our variables between clients and server
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(killCount);
+            writer.Write(isActive);
+
+            NetMessage.SendData(MessageID.WorldData);
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            killCount = reader.ReadInt32();
+            isActive = reader.ReadBoolean();
+        }
     }
     
     // This class handles enemy spawning
@@ -128,13 +144,6 @@ namespace InvasionModdingGuide.Content
         }
     }
 
-    // We need a ModBiome to be able to have a filter for the invasion in the bestiary
-    public class ExampleInvasionBiome : ModBiome
-    {
-        public override string BestiaryIcon => base.BestiaryIcon; // Icon must be 30x30 and be named ending with "_Icon". For example, "ExampleInvasionBiome_Icon.png"
-        public override SceneEffectPriority Priority => SceneEffectPriority.Event;
-    }
-
     // Here we can set custom music to play during the invasion. Audio files must be in a folder named "Music"
     public class ExampleInvasionMusic : ModSceneEffect
     {
@@ -155,6 +164,13 @@ namespace InvasionModdingGuide.Content
         }
 
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Music/ExampleInvasionMusic"); // If you want to play vanilla music, use "MusicID" instead of "MusicLoader"
+    }
+
+    // We need a ModBiome to be able to have a filter for the invasion in the bestiary
+    public class ExampleInvasionBiome : ModBiome
+    {
+        public override string BestiaryIcon => base.BestiaryIcon; // Icon must be 30x30 and be named ending with "_Icon". For example, "ExampleInvasionBiome_Icon.png"
+        public override SceneEffectPriority Priority => SceneEffectPriority.Event;
     }
 
     // Here we actually draw the progress bar UI that we set up in the mod's main script
