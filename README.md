@@ -99,7 +99,7 @@ public override void Unload()
 }
 ```
 
-# Networking and Multiplayer Scaling
+# Networking
 It's important to sync our variables between clients and server to ensure our invasion works correctly in multiplayer.
 
 ```csharp
