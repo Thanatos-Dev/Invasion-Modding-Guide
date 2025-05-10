@@ -54,7 +54,7 @@ namespace InvasionModdingGuide.Content
         public override bool? UseItem(Player player)
         {
             ExampleInvasion.isActive = true;
-            ExampleInvasion.killsNeeded += 40 * (Main.player.Where(p => p.active).Count()); // Adds 40 enemies for each player
+            ExampleInvasion.killsNeeded += 40 * Main.player.Where(p => p.active).Count(); // Adds 40 enemies for each player
 
             if (Main.netMode == NetmodeID.Server)
                 NetMessage.SendData(MessageID.WorldData);
