@@ -85,8 +85,6 @@ namespace InvasionModdingGuide.Content
         {
             writer.Write(killCount);
             writer.Write(isActive);
-
-            NetMessage.SendData(MessageID.WorldData);
         }
 
         public override void NetReceive(BinaryReader reader)

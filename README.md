@@ -107,8 +107,6 @@ public override void NetSend(BinaryWriter writer)
 {
     writer.Write(killCount);
     writer.Write(isActive);
-
-    NetMessage.SendData(MessageID.WorldData);
 }
 
 public override void NetReceive(BinaryReader reader)
