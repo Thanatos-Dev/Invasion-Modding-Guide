@@ -1,0 +1,23 @@
+Biomes: {
+	ExampleInvasionBiome: {
+		DisplayName: Example Invasion
+		TownNPCDialogueName: the Example Invasion
+	}
+}
+
+NPCs: {
+	InvasionBat.DisplayName: Invasion Bat
+	InvasionZombie.DisplayName: Invasion Zombie
+}
+
+Items: {
+	InvasionSummon: {
+		DisplayName: Invasion Summon
+		Tooltip: Summons Example Invasion
+	}
+
+	InvasionDisable: {
+		DisplayName: Invasion Disable
+		Tooltip: Disables Example Invasion
+	}
+}

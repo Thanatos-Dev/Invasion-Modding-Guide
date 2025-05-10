@@ -1,0 +1,1 @@
+This mod serves as an example for the invasion modding guide.

@@ -1,0 +1,3 @@
+displayName = Invasion Modding Guide
+author = Thanatos
+version = 1.0
