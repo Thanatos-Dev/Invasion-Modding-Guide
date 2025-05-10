@@ -1,6 +1,3 @@
-# Invasion Modding Guide
-A guide for implementing custom invasions in tModLoader
-
 # ModSystem Setup
 The first thing we need to do is set up a ModSystem, this will handle almost everything for our invasion.
 
